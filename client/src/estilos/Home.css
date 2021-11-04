@@ -1,0 +1,57 @@
+.container{
+    margin: 0%;
+}
+
+
+.searchpag-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center ;
+    width: 80%;
+    height: 100%;
+    padding: 10px;
+ 
+}
+
+.pokemongrid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    padding: 0px 10px 20px 10px;
+    
+    
+}
+
+.linkcreatupokemon{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 11%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 5px 4px 4px #807ba3;
+    padding: 25px 20px;
+    margin: 20px -40px;
+    
+   
+}
+
+.filters{
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px -30px;
+    
+    
+}
+
+.filters button{
+    margin: 10px;
+}
+
+
+
+
+

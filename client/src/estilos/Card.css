@@ -1,0 +1,37 @@
+.card-grid{
+    display: flex;
+    width: 300px;
+    height: 100px;
+    box-shadow: 4px 4px 4px #807ba3;
+    justify-content: space-between;
+    margin: 15px auto;
+    border-radius: 5px;
+    padding: 10px;
+    
+    
+}
+
+
+.card-top{
+    margin-right: 0px;
+   
+    
+}
+
+.card-top h3{
+   text-transform: capitalize;
+}
+
+.card-down{
+   margin-bottom: -20%;
+   
+    
+}
+
+.card-img{
+    width: 50%;
+    height: 100%;  
+    
+  
+}
+

@@ -1,3 +1,10 @@
+*{
+  margin: 0px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif , cursive;
+  text-decoration: none;
+  color: black
+}
+
 .App {
   text-align: center;
 }
