@@ -19,21 +19,19 @@ export default function Home() {
     const [pokemonsPerPage, setPokemonsPerPage ] = useState(9); //Estado con la cantidad de pokemons por pagina
     const [orden, setOrden] = useState('')
     const [order, setOrder] = useState('')
-
     const indexOfLastPokemon = currentPage * pokemonsPerPage; //Indice del ultimo pokemon 9
     const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage; //Indice del primer pokemon 0
     const currentPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon); //Pokemons que se van a mostrar en la pagina actual
 
-
-    const paginate = (pageNumber) => setCurrentPage(pageNumber); //Funcion que me permite cambiar de pagina
-
+    //Funcion que me permite cambiar de pagina
+    const paginate = (pageNumber) => setCurrentPage(pageNumber); 
 
     useEffect (() => {
-        dispatch(getPokemons()) //lo mismo q hacer map dispatch to props
+        dispatch(getPokemons()) //lo mismo que mapdispatchtoprops
     },[dispatch])
 
     
-    function handleClick(e){ // por si se buggea
+    function handleClick(e){ // Me Resetea por si se buggea
         e.preventDefault();
         dispatch(getPokemons());
     }
@@ -54,6 +52,7 @@ export default function Home() {
         setCurrentPage(1);
         setOrden(`Ordenado ${e.target.value}`)
         console.log(orden)
+        console.log(setPokemonsPerPage)
     }
 
     function handleSortAttack(e) {
@@ -64,6 +63,7 @@ export default function Home() {
         console.log(order)
     }
 
+    //Se Renderiza  
     return (
         <div className= 'container'>
             <br/>

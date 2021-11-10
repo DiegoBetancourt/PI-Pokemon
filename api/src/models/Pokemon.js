@@ -7,8 +7,8 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
       primaryKey: true,
-      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
     },
     hp:{
       type: DataTypes.INTEGER,
-      allowNull: true, // no es obligatorio, por eso lo pongo en true
+      allowNull: true, 
     },
     attack:{
       type: DataTypes.INTEGER,
@@ -41,7 +41,8 @@ module.exports = (sequelize) => {
     sprite: {
       type: DataTypes.STRING,
     },
-    createdInDb: { //para acceder más fácil al personaje que cree en DB (más eficiente)
+    //Todos los pokemons que se creen, se crean con esta propiedad, para poder acceder más fácil al pokemon 
+    createdInDb: { 
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true

@@ -3,22 +3,22 @@ const axios = require ('axios');
 const router = Router();
 const { Pokemon, Type } = require('../db');
 
-//uso async/await para q espere respuesta
-//  Funciones controladoras que me traen los datos de la Api.
-
-
-
+//Funcion controladora que me trae los datos de la Api.
 const getPokemonsApi = async () => {
-    const pokemonsPrimero = await axios.get("https://pokeapi.co/api/v2/pokemon") // Aca me traigo los primeros 20 pokemons de la api.
-    const pokemonSegundo = await axios.get(pokemonsPrimero.data.next) // Aca me traigo los siguientes 20 pokemons.
-    const totalPokemons = pokemonsPrimero.data.results.concat(pokemonSegundo.data.results) // Me guardo los 40 pokemons en una variable.
+    const pokemonsPrimero = await axios.get("https://pokeapi.co/api/v2/pokemon") 
+    const pokemonSegundo = await axios.get(pokemonsPrimero.data.next) 
+    const totalPokemons = pokemonsPrimero.data.results.concat(pokemonSegundo.data.results) 
 
     try {
-        const infoUrl = totalPokemons.map(e => axios.get(e.url)) // Accedo a la url con la info de cada pokemon.
-        let infoPokemons = Promise.all(infoUrl) // Le paso un arreglo de promesas con la respuesta de cada url(info).
+        // Accedo a la url con la info de cada pokemon.
+        const infoUrl = totalPokemons.map(e => axios.get(e.url)) 
+        // Le paso un arreglo de promesas con la respuesta de cada url(info).
+        let infoPokemons = Promise.all(infoUrl) 
             .then(e => {
-                let pokemon = e.map(e => e.data) // Accedo a la info de cada url de cada pokemon.
-                let info = [] // Genero un arreglo de objetos con la info que necesito de cada pokemon.
+                // Accedo a la info de cada url de cada pokemon.
+                let pokemon = e.map(e => e.data) 
+                // Genero un arreglo de objetos con la info que necesito de cada pokemon.
+                let info = [] 
                 pokemon.map(e => {
                     info.push({
                         id: e.id,
@@ -41,12 +41,12 @@ const getPokemonsApi = async () => {
                 return info;
             })
             return infoPokemons;
-    } catch (error) {
-        console.log(error)
+    } catch (err) {
+        console.log(err)
     }
 }
 
-//Esta funcion me trae la info de la db
+//Funcion controladora que me trae los datos de la Base de Datos.
 const getPokemonsDb = async () => {
     try {
         return await Pokemon.findAll({
@@ -58,18 +58,19 @@ const getPokemonsDb = async () => {
                 }
             }
         })
-    } catch (error) {
-        console.log(error);
+    } catch (err) {
+        console.log(err);
     }
 }
 
-// Esta funcion concatena los datos de los pokemons de la api con los de la db.
+//Funcion controladora que me trae todo.
 const getAllPokemons = async () => {
     const apiInfo = await getPokemonsApi();
     const dbInfo = await getPokemonsDb();
     const infoTotal = apiInfo.concat(dbInfo);
     return infoTotal;
 }
+
 
 
 router.get('/', async (req, res, next) => {
@@ -80,12 +81,12 @@ router.get('/', async (req, res, next) => {
             let pokemonName = await pokemonsTotal.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
             return pokemonName.length ? //hay algo?
             res.status(200).send(pokemonName) :
-            res.status(404).send('Pokemon not found')
+            res.status(404).send('Pokémon no Encontrado')
         } else {
             return res.status(200).send(pokemonsTotal);
         }
-    } catch (error) {
-        return next(error);
+    } catch (err) {
+        return next(err);
     }
 })
 
@@ -97,7 +98,7 @@ router.get('/:id', async (req, res) => {
         const pokemonId = await allPokemons.filter(e => e.id == id);
         pokemonId.length ?
         res.status(200).json(pokemonId) :
-        res.status(404).send('Pokemon not found')
+        res.status(404).send('Pokémon no Encontrado')
     }
 })
 
@@ -130,9 +131,9 @@ router.post('/', async (req, res, next) => {
             where: {name: types}
         });
         createdPokemon.addType(createdDb);
-        return res.status(200).send('Pokemon successfully created')
-    } catch (error) {
-        next(error)    
+        return res.status(200).send('Pokémon Creado')
+    } catch (err) {
+        next(err)    
     }
 })
 

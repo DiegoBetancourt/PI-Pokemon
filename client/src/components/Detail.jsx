@@ -20,23 +20,23 @@ export default function Detail(props) {
             {
                 Pokemon.length > 0 ?
                 <div className='detail'>
-                    <div className='detail-img'>
-                        
-                     <img src= {Pokemon[0].sprite} alt='' width= '300px' height= '350px'/>
+                    <div className='detail-img'>                        
+                        <img src= {Pokemon[0].sprite} alt='' width= '150px' height= '150px'/>
                     </div>
                     <div className= 'detail-body'>
-
                         <h1>{Pokemon[0].name}</h1>
-                        <h3>Types: {Pokemon[0].types.map(e => `[${e.name}] `)}</h3>
+                        <h3>Tipo: {Pokemon[0].types.map(e => `[${e.name}] `)}</h3>
                         <h4>Id: {Pokemon[0].id}</h4>
-                        <h4>Hp: {Pokemon[0].hp}</h4>
-                        <h4>Attack: {Pokemon[0].attack}</h4>
-                        <h4>Defense: {Pokemon[0].defense}</h4>
-                        <h4>Speed: {Pokemon[0].speed}</h4>
-                        <h4>Height: {Pokemon[0].height}</h4>
-                        <h4>Weight: {Pokemon[0].weight}</h4>
+                        <h4>Vida: {Pokemon[0].hp}</h4>
+                        <h4>Ataque: {Pokemon[0].attack}</h4>
+                        <h4>Defensa: {Pokemon[0].defense}</h4>
+                        <h4>Velocidad: {Pokemon[0].speed}</h4>
+                        <h4>Altura: {Pokemon[0].height} </h4>
+                        <h4>Peso: {Pokemon[0].weight}</h4>
                     </div>
-                </div> : <p>Cargando Detalles...</p>    
+                </div> : 
+                
+                <p>Cargando Detalles...</p>    
             }
             <Link to= '/home' >
                 <button>Volver</button>
